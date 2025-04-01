@@ -1,128 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conti-Amigos</title>
-
-    <!-- Importar la fuente Poppins desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Fondo con degradado morado */
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to bottom, #6a0dad, #ffffff);
-            color: black;
-            margin: 0;
-            padding: 20px;
-        }
-
-        /* Estilo del título principal */
-        h1 {
-            font-size: 50px;
-            font-weight: bold;
-            color: black; /* Letras en negro */
-            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
             font-family: 'Poppins', sans-serif;
-        }
-
-        /* Sección de cada integrante */
-        .integrante {
-            background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
-            border-radius: 15px;
+            text-align: center;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
             padding: 20px;
-            margin: 20px auto;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
         }
-
-        /* Estilos de los títulos de cada integrante */
-        h3 {
-            color: black;
-            font-size: 22px;
+        .menu button {
+            font-family: 'Lobster', cursive;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #6a0dad;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
         }
-
-        /* Estilo de las imágenes */
+        .menu button:hover {
+            background-color: #8a2be2;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            background: linear-gradient(to right, #434343, #000000);
+            margin: 15% auto;
+            padding: 20px;
+            width: 50%;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        .close {
+            color: red;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .grupo-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
         img {
             width: 200px;
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            border: 3px solid black;
         }
-
-        /* Estilos generales de texto */
-        p {
-            font-size: 16px;
-            color: black;
+        #descripcion {
+            font-style: italic;
         }
-
-        /* Botón de GitHub */
-        .github-btn {
+        .frase {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        /* Efecto hover en el botón */
-        .github-btn:hover {
-            background-color: #6a0dad;
-            transform: scale(1.1);
+            font-style: italic;
         }
     </style>
 </head>
-
 <body>
     <h1>Conti-Amigos</h1>
-    <p><strong>Asignatura:</strong> Construcción de Software</p>
-    <p><strong>Universidad:</strong> Universidad Continental</p>
-
-    <h2>Participantes</h2>
-
-    <div class="integrante">
-        <h3>Roberto Israel Meza Oroe</h3>
-        <p><strong>Correo:</strong> 70395898@continental.edu.pe</p>
-        <img src="robert.jpeg" alt="Foto de Roberto">
-        <p>Desarrollador con interés en la investigación operativa y optimización de sistemas.</p>
-        <a href="https://github.com/robert505-me" class="github-btn" target="_blank">GitHub de Roberto</a>
+    <h2>Construcción de Software</h2>
+    <h3>Prof. Hugo Espetia Huamanga</h3>
+    
+    <div>
+        <img class="grupo-img" src="grupo.jpeg" alt="No hay imagen de grupo">
+    </div>
+    
+    <div class="menu">
+        <button onclick="mostrarModal('roberto')">Roberto Israel Meza Oroe</button>
+        <button onclick="mostrarModal('frank')">Frank Gomez Cornejo</button>
+        <button onclick="mostrarModal('jhohan')">Jhohan Vidal Seguil Osores</button>
+        <button onclick="mostrarModal('diego')">Diego Alejandro de la Flor</button>
     </div>
 
-    <div class="integrante">
-        <h3>Frank Gomez Cornejo</h3>
-        <p><strong>Correo:</strong> 77053327@continental.edu.pe</p>
-        <img src="frank.jpeg" alt="Foto de Frank">
-        <p>Apasionado por la programación y la resolución de problemas en software.</p>
-        <a href="https://github.com/leFrank27" class="github-btn" target="_blank">GitHub de Frank</a>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2 id="nombre"></h2>
+            <p id="correo"></p>
+            <img id="foto" src="" alt="Foto del integrante">
+            <p id="descripcion"></p>
+        </div>
     </div>
 
-    <div class="integrante">
-        <h3>Jhohan Vidal Seguil Osores</h3>
-        <p><strong>Correo:</strong> 76681507@continental.edu.pe</p>
-        <img src="sgil.jpeg" alt="Foto de Jhohan">
-        <p>Interesado en la ciberseguridad y el desarrollo web.</p>
-        <a href="https://github.com/Seguil37" class="github-btn" target="_blank">GitHub de Jhohan</a>
+    <div class="frase">
+        <p>"La ciencia puede divertirnos y fascinarnos pero es la ingeniería la que cambia el mundo."</p>
     </div>
 
-    <div class="integrante">
-        <h3>Diego Alejandro de la Flor</h3>
-        <p><strong>Correo:</strong> 72613628@continental.edu.pe</p>
-        <img src="diego.jpeg" alt="Foto de Diego">
-        <p>Especializado en bases de datos y gestión de proyectos tecnológicos.</p>
-        <a href="https://github.com/DlegoDeLaFlor" class="github-btn" target="_blank">GitHub de Diego</a>
-    </div>
+    <script>
+        function mostrarModal(integrante) {
+            let datos = {
+                "roberto": {
+                    "nombre": "Roberto Israel Meza Oroe",
+                    "correo": "70395898@continental.edu.pe",
+                    "foto": "robert.jpeg",
+                    "descripcion": "Desarrollador con interés en la investigación operativa y optimización de sistemas."
+                },
+                "frank": {
+                    "nombre": "Frank Gomez Cornejo",
+                    "correo": "77053327@continental.edu.pe",
+                    "foto": "frank.jpeg",
+                    "descripcion": "Apasionado por la programación y la resolución de problemas en software."
+                },
+                "jhohan": {
+                    "nombre": "Jhohan Vidal Seguil Osores",
+                    "correo": "76681507@continental.edu.pe",
+                    "foto": "sgil.jpeg",
+                    "descripcion": "Interesado en la ciberseguridad y el desarrollo web."
+                },
+                "diego": {
+                    "nombre": "Diego Alejandro de la Flor",
+                    "correo": "72613628@continental.edu.pe",
+                    "foto": "diego.jpeg",
+                    "descripcion": "Especializado en bases de datos y gestión de proyectos tecnológicos."
+                }
+            };
 
+            document.getElementById("nombre").innerText = datos[integrante].nombre;
+            document.getElementById("correo").innerHTML = "<strong>Correo:</strong> " + datos[integrante].correo;
+            document.getElementById("foto").src = datos[integrante].foto;
+            document.getElementById("descripcion").innerText = datos[integrante].descripcion;
+
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById("modal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
-
 </html>
